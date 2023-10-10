@@ -15,7 +15,7 @@ class MoviesController < ApplicationController
     @the_movie = matching_movies.first
 
     render({ :template => "movies/show" })
-  end
+  end 
 
   def create
     the_movie = Movie.new
@@ -54,5 +54,9 @@ class MoviesController < ApplicationController
     the_movie.destroy
 
     redirect_to("/movies", { :notice => "Movie deleted successfully."} )
+  end
+
+  def new
+    render(template: "movies/new.html.erb")
   end
 end
