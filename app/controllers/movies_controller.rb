@@ -1,4 +1,14 @@
 class MoviesController < ApplicationController
+
+  def new
+    render(template: "movies/new")
+  end
+
+  def edit
+    @the_movie = Movie.where(id: params.fetch(:id)).first
+    render template: "movies/edit"
+  end
+
   def index
     matching_movies = Movie.all
 
@@ -6,6 +16,8 @@ class MoviesController < ApplicationController
 
     render({ :template => "movies/index" })
   end
+  
+  
 
   def show
     the_id = params.fetch("id")
@@ -56,7 +68,5 @@ class MoviesController < ApplicationController
     redirect_to("/movies", { :notice => "Movie deleted successfully."} )
   end
 
-  def new
-    render(template: "movies/new.html.erb")
-  end
+
 end
